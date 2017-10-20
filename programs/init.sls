@@ -8,4 +8,4 @@ programs:
     - vim-enhanced
 {% elif grains['os'] != "CentOS" or grains['os'] != "Fedora" %}
   - pkgs: vim
-{% endif %]
+{% endif %}
