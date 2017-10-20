@@ -1,6 +1,7 @@
-#Add users from pillar
+#Add users in pillar.
 {% for user, args in pillar['users'].iteritems() %}
-{{ user }}:  group.present:
+{{ user }}:
+  group.present:
     - gid: {{ args['gid'] }}
   user.present:
     - home: {{ args['home'] }}
