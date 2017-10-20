@@ -1,5 +1,7 @@
 {% for user, args in pillar['users'].iteritems() %}
 {{ user }}:
+  group.present:
+    - gid: {{ args['gid'] }}
   user.present:
     - home: {{ args['home'] }}
     - shell: {{ args['shell'] }}
@@ -15,6 +17,8 @@
 {% if 'groups' in args %}
     - groups: {{ args['groups'] }}
 {% endif %}
+    - require:
+      - group: {{ user }}
 
 {% if 'key.pub' in args and args['key.pub'] == True %}
 {{ user }}_key.pub:
