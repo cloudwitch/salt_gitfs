@@ -3,6 +3,7 @@ standard_programs:
   - pkgs:
     - salt-minion
     - htop
+    - sl
 
 vim:
   pkg.installed:
