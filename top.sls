@@ -2,3 +2,4 @@ base:
   '*':
     - programs
     - users
+    - firewalld
