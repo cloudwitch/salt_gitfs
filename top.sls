@@ -4,3 +4,4 @@ base:
     - users
     - firewalld
     - tuned
+    - motd
