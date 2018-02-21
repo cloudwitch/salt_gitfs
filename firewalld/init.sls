@@ -1,6 +1,6 @@
 
-#This state masks fierwalld on fedora.
-{% if grains['os'] == "Fedora" %}
+#This state masks fierwalld on Fedora or CentOS.
+{% if grains['os'] == "Fedora" or grains['os'] == "CentOS"%}
 kill_firewalld:
   service.dead:
     - name: firewalld
@@ -15,8 +15,8 @@ reboot_suggestion:
       - service: mask_firewalld
       - service: kill_firewalld
 
-{% elif grains['os'] != "Fedora" %}
+{% else %}
 not_fedora:
   cmd.run:
-    - name: '/usr/bin/echo "This is not a Fedora Server"'
+    - name: '/usr/bin/echo "This is not a Fedora or CentOS Server"'
 {% endif %}
