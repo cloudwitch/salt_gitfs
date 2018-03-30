@@ -8,9 +8,17 @@ make-sure-deps-installed:
             - zsh
             - git
 
+check if installed:
+  file.exists:
+    name: /home/{{ user }}/.oh-my-zsh/README.md
+
+#oh-my-zsh will get installed if it hasn't been already installed.
 install-zsh:
-    cmd.run:
-        - name: sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  cmd.run:
+    - name: sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    - runas: {{ user }}
+    - onfail:
+      - file: check if installed
 
 apply-zshrc:
     file.managed:
