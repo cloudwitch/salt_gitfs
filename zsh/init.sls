@@ -1,5 +1,5 @@
 #installs oh-my-zsh
-#borrowed from my buddy Logan
+#some code borrowed from my buddy Logan
 {% for user, args in pillar['users'].iteritems() %}
 make-sure-deps-installed:
     pkg.installed:
@@ -18,10 +18,12 @@ apply-zshrc:
         - source: salt://{{ slspath }}/files/zshrc
 
 replace-user in .zshrc:
-  file.replace:
+  file.managed:
     - name: /home/{{ user }}/.zshrc
-    - pattern: ZSH=/changeme
-    - repl: ZSH=/home/{{ user }}
+    - match: "  export ZSH=/changeme/.oh-my-zsh"
+    - contents: 
+      - "  export ZSH=/home/{{ user }}/.oh-my-zsh"
+    - mode: replace
     - require:
       - file: apply-zshrc
 {% endfor %}
