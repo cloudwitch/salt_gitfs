@@ -17,15 +17,15 @@ docker-ce:
     - require:
       - cmd: grab_repo
 
-setup_remote_port_55000:
-  file.managed:
-    - name: /etc/docker/daemon.json
-    - source: salt://{{slspath}}/files/daemon.json
-    - source_hash: c77f4717b998ce5b41fe67f5b99e0f0808d9b12c2ca75e23d1d1cb8e3f6cef26
-    - makedirs: True
-    - user: root
-    - group: root
-    - mode: 600
+#setup_remote_port_55000:
+#  file.managed:
+#    - name: /etc/docker/daemon.json
+#    - source: salt://{{slspath}}/files/daemon.json
+#    - source_hash: c77f4717b998ce5b41fe67f5b99e0f0808d9b12c2ca75e23d1d1cb8e3f6cef26
+#    - makedirs: True
+#    - user: root
+#    - group: root
+#    - mode: 600
 
 start_docker:
   service.running:
