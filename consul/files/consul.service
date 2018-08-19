@@ -1,0 +1,20 @@
+# /etc/systemd/system/consul.service 
+[Unit]
+Description=Consul service discovery agent
+Requires=network-online.target
+After=network.target
+
+[Service]
+User=consul
+Group=consul
+#PIDFile=/var/run/consul/consul.pid
+Restart=on-failure
+#ExecStartPre=[ /bin/bash -f "/run/consul/consul.pid" ] && /bin/rm -f /var/run/consul/consul.pid
+ExecStartPre=/usr/local/bin/consul validate /etc/consul.d
+ExecStart=/usr/local/bin/consul agent $OPTIONS -config-dir=/etc/consul.d
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGINT
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
