@@ -1,18 +1,13 @@
 import socket
+# define hostname
 hostname = socket.gethostname()
-if 'k8s' in hostname:
-  def k8s_grain():
-    grains = {}
-    grains[role] = 'master'
-    if '01' in hostname:
-      role = 'master'
-    else:
-      role = 'worker'
-    k8s = {'role': role, 'cluster': 'k8spi'}
-    return k8s
-  print(k8s)
 
-else:
-  print("Not a k8s node, no cluster for you")
-
-
+# If hostname contains "k8s" assign the role "master" for 01, else "worker".
+def get_k8s_name():
+    k8s_role_dict = {'k8s role': ''}
+    if 'k8s' in hostname:
+        if '01' in hostname:
+            k8s_role_dict['k8s role'] = 'master'
+        else:
+            k8s_role_dict['k8s role'] = 'worker'
+        return k8s_role_dict

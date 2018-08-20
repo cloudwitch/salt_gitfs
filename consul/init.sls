@@ -54,6 +54,11 @@ consul:
 
 copy consul config:
   file.managed:
-    - name:  
-    - source: salt://{{slspath}}/files/consul.service
+    - name:  /etc/consul.d/config.json
+    - source: salt://{{slspath}}/files/config.json
     - mode: 644
+    - makedirs: True
+    - user: consul
+    - group: consul
+    - require:
+      - user: consul user
