@@ -3,8 +3,8 @@
   "server": true,
   "enable_debug": true,
   "data_dir": "/opt/consul",
-  "bind_addr": "192.168.2.13",
-  "client_addr": "192.168.2.13",
+  "bind_addr": "<addr>",
+  "client_addr": "<addr>",
   "ui": true,
   "raft_protocol": "3"
 }
