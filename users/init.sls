@@ -6,7 +6,7 @@
 {% endfor %}
 
 #Add users in pillar.
-{% for user pillar('users') %}
+{% for user, args in pillar['users'].iteritems() %}
 {{ user }}:
   group.present:
     - gid: {{ args['gid'] }}
