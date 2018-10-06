@@ -7,3 +7,4 @@ def run():
             {'name': 'fiona'},
             {'gid': '10101'}
         ]
+    return config
