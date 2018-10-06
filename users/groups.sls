@@ -1,3 +1,9 @@
 #!py
 def run():
-  {'groupstate': {'group.present': [{'name': 'fiona'}, {'gid': '10101'}]}}
+    config = {}
+    config['groupstate'] =
+        'group': [
+          'present',
+          {'name': 'fiona'},
+          {'gid': '10101'}
+        ]
